@@ -4,6 +4,7 @@ import (
 	"context"
 	"io"
 	"os"
+	"runtime"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -47,6 +48,8 @@ type Logger struct {
 	// The buffer pool used to format the log. If it is nil, the default global
 	// buffer pool will be used.
 	BufferPool BufferPool
+
+	ReportCallerFunc func() *runtime.Frame
 }
 
 type exitFunc func(int)
